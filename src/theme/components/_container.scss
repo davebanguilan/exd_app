@@ -1,0 +1,15 @@
+.container {
+  &--error-message {
+    ion-icon {
+      color: red;
+      font-size: small;
+      margin-right: 1rem;
+    }
+    color: red;
+    font-size: small;
+  }
+  &--error {
+    width: 100%;
+    display: flex;
+  }
+}

@@ -1,0 +1,112 @@
+<ion-grid class="sign-up">
+  <ion-row class="ion-align-items-center">
+    <ion-col size='12'>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <h2>Sign Up</h2>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+
+    <form (ngSubmit)="signUp()" #signUpForm="ngForm">
+      <ion-col size='12'>
+        <ion-row >
+          <ion-col class="ion-no-padding" size='12'>
+            <ion-item>
+              <ion-icon slot='start' name="person-outline"></ion-icon>
+              <ion-label position="floating">Name</ion-label>
+              <ion-input type="text" [(ngModel)]="user.name" id="inputName" name="name" #name="ngModel" required [pattern]="letterOnlyPattern"></ion-input>
+            </ion-item>
+            <app-inline-validation-message [control]="name" [fieldName]="'Name'" [form]="signUpForm" [showImmediately]="true">
+            </app-inline-validation-message>
+          </ion-col>
+  
+          <ion-col class="ion-no-padding" size='12'>
+            <ion-item>
+              <ion-icon slot='start' name="mail-outline"></ion-icon>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" [(ngModel)]="user.email" id="email" name="email" #email="ngModel" required [pattern]="defaultEmailPattern"></ion-input>
+            </ion-item>
+            <app-inline-validation-message [control]="email" [fieldName]="'Email'" [form]="signUpForm" [showImmediately]="true">
+            </app-inline-validation-message>
+          </ion-col>
+
+          <ion-col class="ion-no-padding" size='12'>
+            <ion-item>
+              <ion-icon slot='start' name="call-outline"></ion-icon>
+              <ion-label position="floating">Phone Number</ion-label>
+              <ion-input type="tel" maxlength="11" [(ngModel)]="user.phoneNumber" id="phoneNumber" name="phoneNumber" #phoneNumber="ngModel" required [pattern]="numericPattern"
+                appDigitsOnly></ion-input>
+            </ion-item>
+            <app-inline-validation-message [control]="phoneNumber" [fieldName]="'Phone Number'" [form]="signUpForm" [showImmediately]="true">
+            </app-inline-validation-message>
+          </ion-col>
+  
+          <ion-col class="ion-no-padding" size='12'>
+            <ion-item>
+              <ion-icon slot='start' name="key-outline"></ion-icon>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" placeholder="Password" id="inputPassword" [(ngModel)]="user.password" name="password" #password="ngModel" autocomplete="on" required
+                appPasswordValidate></ion-input>
+            </ion-item>
+            <app-inline-validation-message [control]="password" [fieldName]="'Password'" [form]="signUpForm" [showImmediately]="true">
+            </app-inline-validation-message>
+          </ion-col>
+  
+          <ion-col class="ion-no-padding" size='12'>
+            <ion-item>
+              <ion-icon slot='start' name="key-outline"></ion-icon>
+              <ion-label position="floating">Confirm Password</ion-label>
+              <ion-input type="password" placeholder="Confirm Password" id="inputConfirmPassword" [(ngModel)]="user.confirmPassword" name="confirmPassword" 
+                #confirmPassword="ngModel" autocomplete="on"required appConfirmPasswordValidate></ion-input>
+            </ion-item>
+            <app-inline-validation-message [control]="confirmPassword" [fieldName]="'Confirm Password'" [form]="signUpForm" [showImmediately]="true">
+            </app-inline-validation-message>
+          </ion-col>
+    
+          <ion-col class="ion-no-padding" size='12'>
+            <ion-item>
+              <ion-icon slot='start' name="logo-facebook"></ion-icon>
+              <ion-label position="floating">Facebook Username <span class="span--optional">(Optional)</span></ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+          </ion-col>
+    
+          <ion-col class="ion-no-padding" size='12'>
+            <ion-item>
+              <ion-icon slot='start' name="logo-instagram"></ion-icon>
+              <ion-label position="floating">Instagram Username <span class="span--optional">(Optional)</span></ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+          </ion-col>
+    
+          <ion-col class="ion-no-padding" size='12'>
+            <ion-item>
+              <ion-icon slot='start' name="logo-twitter"></ion-icon>
+              <ion-label position="floating">Twitter Username <span class="span--optional">(Optional)</span></ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+          </ion-col>
+    
+        </ion-row>
+      </ion-col>
+  
+      <ion-col size='12'>
+        <ion-row class="ion-justify-content-between">
+          <ion-col>
+            <ion-button color="danger" shape="round">
+              Close
+              <ion-icon slot="end" name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col class="ion-text-end">
+            <ion-button type="submit" shape="round">
+              Sign Up
+              <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </form>
+  </ion-row>
+</ion-grid>

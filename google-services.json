@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "333838085437",
+    "project_id": "dev-exd-app",
+    "storage_bucket": "dev-exd-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333838085437:android:46a16efd1fb329306f2954",
+        "android_client_info": {
+          "package_name": "com.dbanguilan.exd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333838085437-17psc6t5aned472od7v9rqtu6kicddn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcWBz40mFmfahuR-d8jkHvccIDLp0TEqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333838085437-17psc6t5aned472od7v9rqtu6kicddn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
