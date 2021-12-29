@@ -17,3 +17,8 @@ export interface User {
 export interface SignUpRequest extends User {
   confirmPassword?: string;
 }
+
+export interface SignInRequest {
+  email?: string;
+  password?: string;
+}

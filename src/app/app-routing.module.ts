@@ -7,9 +7,14 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'signup',
+    path: 'sign-up',
     loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./sign-in/sign-in.module').then( m => m.SignInPageModule)
   }
+
 ];
 @NgModule({
   imports: [
