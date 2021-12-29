@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DEFAULT_EMAIL_PATTERN, LETTER_ONLY_PATTERN, NUMERIC_PATTERN } from '../shared/constants';
+import { Router } from '@angular/router';
+import { DEFAULT_EMAIL_PATTERN, LETTER_ONLY_PATTERN, NUMERIC_PATTERN, PATHURL, ROUTEURL } from '../shared/constants';
 import { SignUpRequest } from '../shared/models';
 
 @Component({
@@ -16,13 +17,19 @@ export class SignUpPage implements OnInit {
 
   user: SignUpRequest = {};
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   signUp(): void {
-    console.log('sign-up');
+    this.router.navigateByUrl(ROUTEURL.tabs);
+  }
+
+  login(): void {
+    this.router.navigateByUrl(ROUTEURL.login);
   }
 
 }
