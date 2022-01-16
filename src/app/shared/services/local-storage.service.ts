@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { LOCALSTORAGE } from '../constants';
 import { User } from '../models/user.model';
-@Injectable()
+
+@Injectable({ providedIn: 'root' })
 export class LocalStorageService {
   getCurrentUser(): User {
     const currentUser = localStorage.getItem(LOCALSTORAGE.currentUser);

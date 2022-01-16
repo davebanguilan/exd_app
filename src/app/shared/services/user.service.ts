@@ -35,6 +35,7 @@ export class UserService {
         .then((response) => {
           user.id = response.user.uid;
           delete user.password;
+          delete user.confirmPassword;
           this.createUser(user)
             .then(() => {
               this.authService.setUser(user);

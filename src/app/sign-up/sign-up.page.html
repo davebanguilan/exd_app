@@ -68,7 +68,7 @@
             <ion-item>
               <ion-icon slot='start' name="logo-facebook"></ion-icon>
               <ion-label position="floating">Facebook Username <span class="span--optional">(Optional)</span></ion-label>
-              <ion-input></ion-input>
+              <ion-input type="text" [(ngModel)]="user.fbUsername" id="fbUsername" name="fbUsername" #fbUsername="ngModel"></ion-input>
             </ion-item>
           </ion-col>
     
@@ -76,7 +76,7 @@
             <ion-item>
               <ion-icon slot='start' name="logo-instagram"></ion-icon>
               <ion-label position="floating">Instagram Username <span class="span--optional">(Optional)</span></ion-label>
-              <ion-input></ion-input>
+              <ion-input type="text" [(ngModel)]="user.instagramUsername" id="instagramUsername" name="instagramUsername" #instagramUsername="ngModel"></ion-input>
             </ion-item>
           </ion-col>
     
@@ -84,7 +84,7 @@
             <ion-item>
               <ion-icon slot='start' name="logo-twitter"></ion-icon>
               <ion-label position="floating">Twitter Username <span class="span--optional">(Optional)</span></ion-label>
-              <ion-input></ion-input>
+              <ion-input type="text" [(ngModel)]="user.twitterUsername" id="twitterUsername" name="twitterUsername" #twitterUsername="ngModel"></ion-input>
             </ion-item>
           </ion-col>
     
@@ -100,7 +100,7 @@
             </ion-button>
           </ion-col>
           <ion-col class="ion-text-end">
-            <ion-button type="submit" shape="round">
+            <ion-button type="submit" shape="round" [appButtonSpinner]="isSubmitting">
               Sign Up
               <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
             </ion-button>

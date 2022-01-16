@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { LOCALSTORAGE } from '../constants';
-// import { RouteUrl } from '../const/navigation.const';
 import { User } from '../models/user.model';
 import { LocalStorageService } from './local-storage.service';
-import firebase from 'firebase';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
