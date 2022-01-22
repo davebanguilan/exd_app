@@ -100,7 +100,7 @@
             </ion-button>
           </ion-col>
           <ion-col class="ion-text-end">
-            <ion-button type="submit" shape="round" [appButtonSpinner]="isSubmitting">
+            <ion-button type="submit" shape="round" [appButtonSpinner]="isSubmitting" [disabled]="!signUpForm.valid">
               Sign Up
               <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
             </ion-button>
