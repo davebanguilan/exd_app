@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DEFAULT_EMAIL_PATTERN, LETTER_ONLY_PATTERN, NUMERIC_PATTERN, ROUTEURL } from '../shared/constants';
+import {
+  DEFAULT_EMAIL_PATTERN,
+  ERROR_MESSAGES_MAIN,
+  ERROR_MESSAGES_SUB,
+  LETTER_ONLY_PATTERN,
+  NUMERIC_PATTERN, ROUTEURL } from '../shared/constants';
 import { User } from '../shared/models';
-import { UserService } from '../shared/services';
+import { AlertModalService, UserService } from '../shared/services';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +26,8 @@ export class SignUpPage implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private alertModalService: AlertModalService
   ) { }
 
   ngOnInit() {
@@ -29,9 +35,15 @@ export class SignUpPage implements OnInit {
 
   signUp(): void {
     this.isSubmitting = true;
-    this.userService.createUserByEmail(this.user).then(() => {
-      this.router.navigateByUrl(ROUTEURL.tabs);
-    }).finally(() => this.isSubmitting = false);
+    this.userService
+      .createUserByEmail(this.user)
+      .then(() => {
+        this.router.navigateByUrl(ROUTEURL.tabs);
+      })
+      .catch(async (error) => {
+        await this.alertModalService.setOkayModalAlert(ERROR_MESSAGES_MAIN[error.code], ERROR_MESSAGES_SUB[error.code]);
+      })
+      .finally(() => this.isSubmitting = false);
   }
 
   login(): void {

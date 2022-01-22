@@ -45,8 +45,8 @@ export class UserService {
             })
             .catch(() => reject(this.users));
         })
-        .catch(() => {
-          reject(this.users);
+        .catch((error) => {
+          reject(error);
         });
     });
   }
