@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from '../models/user.model';
+import { Router } from '@angular/router';
+import { ROUTEURL } from '../constants';
+import { SignInRequest, User } from '../models';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })
@@ -9,7 +11,8 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   getUser(): User {
@@ -34,10 +37,17 @@ export class AuthService {
     return result;
   }
 
-  async loginByEmail(email: string, password: string): Promise<any> {
+  async logout(): Promise<void> {
+    await this.afAuth.signOut();
+    this.user = undefined;
+    this.localStorageService.removeCurrentUser();
+    setTimeout(() => this.router.navigateByUrl(ROUTEURL.login), 100);
+  }
+
+  async loginByEmail(signInRequest: SignInRequest): Promise<any> {
     const result = await this.afAuth.signInWithEmailAndPassword(
-      email,
-      password
+      signInRequest.email,
+      signInRequest.password
     );
 
     return result;
