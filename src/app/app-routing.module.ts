@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo, AuthPipe } from '@angular/fire/auth-guard';
-
-const redirectUnauthorizedToLogin = (): AuthPipe => redirectUnauthorizedTo(['login']);
+import { canActivate, redirectLoggedInTo, AuthPipe } from '@angular/fire/auth-guard';
+import { AuthGuard } from './shared/security';
 
 const redirectLoggedInToApp = (): AuthPipe => redirectLoggedInTo(['tabs']);
 
@@ -13,9 +12,9 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    canActivate: [AuthGuard],
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'sign-up',
