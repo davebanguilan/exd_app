@@ -1,0 +1,27 @@
+.account__container {
+  .box__spacer--2 {
+    margin-bottom: 2rem;
+  }
+
+  .box__spacer--4 {
+    margin-bottom: 4rem;
+  }
+
+  .qrcode {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .details__container {
+    padding: 0 2rem;
+  }
+
+  .action-button__container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    bottom: 1rem;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+  }
+}

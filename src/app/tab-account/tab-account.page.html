@@ -1,15 +1,134 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-row class="account__container">
+  <ion-col class="box__spacer--2" size='12'>
+    
+  </ion-col>
+  <ion-col class="ion-text-center" size='12'>
+    <ngx-qrcode 
+      [elementType]="text" 
+      [value]="user?.id"
+      errorCorrectionLevel="L"
+      [width]="250">
+    </ngx-qrcode>
+  </ion-col>
+  <form (ngSubmit)="saveDetails()" #accountPageForm="ngForm" class="details__container">
+    <ion-col size='12'>
+      <ion-row >
+        <ion-col class="ion-no-padding" size='12'>
+          <ion-item [lines]="isEditing ? '' : 'none'">
+            <ion-icon slot='start' name="person-outline"></ion-icon>
+            <ion-input 
+              type="text" [clearInput]="isEditing" [ngModel]="user?.name" (ionChange)="user?.name ? user.name = $event.target.value : ''" 
+              id="inputName" name="name" #name="ngModel" required [pattern]="letterOnlyPattern">
+            </ion-input>
+          </ion-item>
+          <app-inline-validation-message [control]="name" [fieldName]="'Name'" [form]="accountPageForm" [showImmediately]="true">
+          </app-inline-validation-message>
+        </ion-col>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+        <ion-col class="ion-no-padding" size='12'>
+          <ion-item [lines]="isEditing ? '' : 'none'">
+            <ion-icon slot='start' name="mail-outline"></ion-icon>
+            <ion-input 
+              type="email" [clearInput]="isEditing" [ngModel]="user?.email" (ionChange)="user?.email ? user.email = $event.target.value : ''" 
+              id="email" name="email" #email="ngModel" required [pattern]="defaultEmailPattern">
+            </ion-input>
+          </ion-item>
+          <app-inline-validation-message [control]="email" [fieldName]="'Email'" [form]="accountPageForm" [showImmediately]="true">
+          </app-inline-validation-message>
+        </ion-col>
+
+        <ion-col class="ion-no-padding" size='12'>
+          <ion-item [lines]="isEditing ? '' : 'none'">
+            <ion-icon slot='start' name="call-outline"></ion-icon>
+            <ion-input 
+              type="tel" [clearInput]="isEditing" maxlength="11" [ngModel]="user?.phoneNumber" (ionChange)="user?.phoneNumber ? user.phoneNumber = $event.target.value : ''" 
+              id="phoneNumber" name="phoneNumber" #phoneNumber="ngModel" required [pattern]="numericPattern" appDigitsOnly>
+            </ion-input>
+          </ion-item>
+          <app-inline-validation-message [control]="phoneNumber" [fieldName]="'Phone Number'" [form]="accountPageForm" [showImmediately]="true">
+          </app-inline-validation-message>
+        </ion-col>
+  
+        <ion-col *ngIf="isEditing" class="ion-no-padding" size='12'>
+          <ion-item>
+            <ion-icon slot='start' name="logo-facebook"></ion-icon>
+            <ion-input 
+              type="text" [clearInput]="isEditing" [ngModel]="user?.fbUsername" (ionChange)="user?.fbUsername ? user.fbUsername = $event.target.value : ''" 
+              id="fbUsername" name="fbUsername" #fbUsername="ngModel">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+  
+        <ion-col *ngIf="isEditing" class="ion-no-padding" size='12'>
+          <ion-item>
+            <ion-icon slot='start' name="logo-instagram"></ion-icon>
+            <ion-input 
+              type="text" [clearInput]="isEditing" [ngModel]="user?.instagramUsername" (ionChange)="user?.instagramUsername ? user.instagramUsername = $event.target.value : ''" 
+              id="instagramUsername" name="instagramUsername" #instagramUsername="ngModel">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+  
+        <ion-col *ngIf="isEditing" class="ion-no-padding" size='12'>
+          <ion-item>
+            <ion-icon slot='start' name="logo-twitter"></ion-icon>
+            <ion-input 
+              type="text" [clearInput]="isEditing" [ngModel]="user?.twitterUsername" (ionChange)="user?.twitterUsername ? user.twitterUsername = $event.target.value : ''" 
+              id="twitterUsername" name="twitterUsername" #twitterUsername="ngModel">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-col>
+    <ion-col class="box__spacer--4" size='12'>
+      
+    </ion-col>
+    <ion-row>
+      <ion-col class="box__spacer--4" size='12'>
+      
+      </ion-col>
+      <ion-col *ngIf="!isEditing" size='12'>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-icon name="logo-facebook" size="large"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-text-center">
+            <ion-icon name="logo-instagram" size="large"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-text-center">
+            <ion-icon name="logo-twitter" size="large"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col class="action-button__container">
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-button *ngIf="!isEditing" (click)="editDetails()">
+              Edit
+              <ion-icon slot="end" name="pencil"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="isEditing" color="success" type="submit" [disabled]="!accountPageForm.dirty || !accountPageForm.valid">
+              <span *ngIf="!isSubmitting">
+                Save
+                <ion-icon slot="end" name="save"></ion-icon>
+              </span>
+              <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
+            </ion-button>
+          </ion-col>
+  
+          <ion-col class="ion-text-center">
+            <ion-button *ngIf="!isEditing" color="danger" (click)="logout()">
+              Logout
+              <ion-icon slot="end" name="log-out-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="isEditing" color="danger" (click)="cancelEditDetails()">
+              Cancel
+              <ion-icon slot="end" name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-row>

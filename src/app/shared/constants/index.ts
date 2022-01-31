@@ -5,3 +5,4 @@ export * from './collection.constant';
 export * from './local-storage.constant';
 export * from './navigation.constant';
 export * from './modal-button.constant';
+export * from './toast.constant';

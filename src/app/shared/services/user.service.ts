@@ -6,7 +6,7 @@ import {
   AngularFirestoreCollection,
   QuerySnapshot,
 } from '@angular/fire/firestore';
-import { AuthService } from '.';
+import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -77,6 +77,15 @@ export class UserService {
         }
       );
     });
+  }
+
+  async updateUser(user: User): Promise<void> {
+    await this.firestore
+          .collection<User>(COLLECTION.user)
+          .doc(user.id)
+          .update(user);
+
+    this.authService.updateUser(user);
   }
 
   getUserByEmail(email: string): Observable<QuerySnapshot<User>> {
