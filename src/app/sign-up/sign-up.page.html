@@ -100,9 +100,12 @@
             </ion-button>
           </ion-col>
           <ion-col class="ion-text-end">
-            <ion-button type="submit" shape="round" [appButtonSpinner]="isSubmitting" [disabled]="!signUpForm.valid">
-              Sign Up
-              <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+            <ion-button type="submit" shape="round" [disabled]="!signUpForm.valid">
+              <span *ngIf="!isSubmitting">
+                Sign Up
+                <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+              </span>
+              <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
             </ion-button>
           </ion-col>
         </ion-row>

@@ -28,6 +28,11 @@ export class AuthService {
     this.user = user;
   }
 
+  updateUser(user: User): void {
+    this.localStorageService.setCurrentUser(user);
+    this.user = user;
+  }
+
   async createUserByEmail(user: User): Promise<any> {
     const result = await this.afAuth.createUserWithEmailAndPassword(
       user.email,

@@ -1,16 +1,14 @@
-import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { TabAccountPage } from './tab-account.page';
 
 import { TabAccountPageRoutingModule } from './tab-account-routing.module';
+import { SharedModule } from '../shared';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
+    SharedModule,
+    NgxQRCodeModule,
     TabAccountPageRoutingModule
   ],
   declarations: [TabAccountPage]
