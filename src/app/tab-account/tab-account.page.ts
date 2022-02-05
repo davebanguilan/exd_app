@@ -46,6 +46,7 @@ export class TabAccountPage implements OnInit {
   }
 
   editDetails(): void {
+    this.isSubmitting = false;
     this.isEditing = !this.isEditing;
   }
 
@@ -62,6 +63,7 @@ export class TabAccountPage implements OnInit {
       this.toastService.showErrorToast(TOAST_MESSAGE.accountUpdateError);
     }).finally(() => {
       this.isSubmitting = false;
+      this.isEditing = !this.isEditing;
     });
   }
 

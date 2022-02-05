@@ -18,7 +18,9 @@
             <ion-icon slot='start' name="person-outline"></ion-icon>
             <ion-input 
               type="text" [clearInput]="isEditing" [(ngModel)]="user.name" [value]="user?.name" 
-              id="inputName" name="name" #name="ngModel" required [pattern]="letterOnlyPattern">
+              id="inputName" name="name" #name="ngModel" required [pattern]="letterOnlyPattern"
+              [readonly]="!isEditing"
+              >
             </ion-input>
           </ion-item>
           <app-inline-validation-message [control]="name" [fieldName]="'Name'" [form]="accountPageForm" [showImmediately]="true">
@@ -30,7 +32,9 @@
             <ion-icon slot='start' name="mail-outline"></ion-icon>
             <ion-input 
               type="email" [clearInput]="isEditing" [(ngModel)]="user.email" [value]="user?.email"
-              id="email" name="email" #email="ngModel" required [pattern]="defaultEmailPattern">
+              id="email" name="email" #email="ngModel" required [pattern]="defaultEmailPattern"
+              [readonly]="!isEditing"
+              >
             </ion-input>
           </ion-item>
           <app-inline-validation-message [control]="email" [fieldName]="'Email'" [form]="accountPageForm" [showImmediately]="true">
@@ -42,7 +46,9 @@
             <ion-icon slot='start' name="call-outline"></ion-icon>
             <ion-input 
               type="tel" [clearInput]="isEditing" maxlength="11" [(ngModel)]="user.phoneNumber" [value]="user?.phoneNumber" 
-              id="phoneNumber" name="phoneNumber" #phoneNumber="ngModel" required [pattern]="numericPattern" appDigitsOnly>
+              id="phoneNumber" name="phoneNumber" #phoneNumber="ngModel" required [pattern]="numericPattern" appDigitsOnly
+              [readonly]="!isEditing"
+              >
             </ion-input>
           </ion-item>
           <app-inline-validation-message [control]="phoneNumber" [fieldName]="'Phone Number'" [form]="accountPageForm" [showImmediately]="true">
