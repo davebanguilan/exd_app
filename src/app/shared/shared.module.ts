@@ -6,9 +6,11 @@ import {
   InlineValidationMessageComponent,
 } from './components';
 import { ButtonSpinnerDirective, ConfirmPasswordValidatorDirective, DigitsOnlyDirective, PasswordValidatorDirective } from './directives';
+import { SocialMediaAppComponent } from './components/social-media-app/social-media-app.component';
 
 export const components = [
   InlineValidationMessageComponent,
+  SocialMediaAppComponent
 ];
 
 export const directives = [

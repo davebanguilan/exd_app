@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
-import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
@@ -21,7 +20,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     NgxQRCodeModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, BarcodeScanner],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

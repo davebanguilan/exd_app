@@ -17,7 +17,7 @@
           <ion-item [lines]="isEditing ? '' : 'none'">
             <ion-icon slot='start' name="person-outline"></ion-icon>
             <ion-input 
-              type="text" [clearInput]="isEditing" [ngModel]="user?.name" (ionChange)="user?.name ? user.name = $event.target.value : ''" 
+              type="text" [clearInput]="isEditing" [(ngModel)]="user.name" [value]="user?.name" 
               id="inputName" name="name" #name="ngModel" required [pattern]="letterOnlyPattern">
             </ion-input>
           </ion-item>
@@ -29,7 +29,7 @@
           <ion-item [lines]="isEditing ? '' : 'none'">
             <ion-icon slot='start' name="mail-outline"></ion-icon>
             <ion-input 
-              type="email" [clearInput]="isEditing" [ngModel]="user?.email" (ionChange)="user?.email ? user.email = $event.target.value : ''" 
+              type="email" [clearInput]="isEditing" [(ngModel)]="user.email" [value]="user?.email"
               id="email" name="email" #email="ngModel" required [pattern]="defaultEmailPattern">
             </ion-input>
           </ion-item>
@@ -41,7 +41,7 @@
           <ion-item [lines]="isEditing ? '' : 'none'">
             <ion-icon slot='start' name="call-outline"></ion-icon>
             <ion-input 
-              type="tel" [clearInput]="isEditing" maxlength="11" [ngModel]="user?.phoneNumber" (ionChange)="user?.phoneNumber ? user.phoneNumber = $event.target.value : ''" 
+              type="tel" [clearInput]="isEditing" maxlength="11" [(ngModel)]="user.phoneNumber" [value]="user?.phoneNumber" 
               id="phoneNumber" name="phoneNumber" #phoneNumber="ngModel" required [pattern]="numericPattern" appDigitsOnly>
             </ion-input>
           </ion-item>
@@ -53,7 +53,7 @@
           <ion-item>
             <ion-icon slot='start' name="logo-facebook"></ion-icon>
             <ion-input 
-              type="text" [clearInput]="isEditing" [ngModel]="user?.fbUsername" (ionChange)="user?.fbUsername ? user.fbUsername = $event.target.value : ''" 
+              type="text" [clearInput]="isEditing" [(ngModel)]="user.fbUsername" [value]="user?.fbUsername" 
               id="fbUsername" name="fbUsername" #fbUsername="ngModel">
             </ion-input>
           </ion-item>
@@ -63,7 +63,7 @@
           <ion-item>
             <ion-icon slot='start' name="logo-instagram"></ion-icon>
             <ion-input 
-              type="text" [clearInput]="isEditing" [ngModel]="user?.instagramUsername" (ionChange)="user?.instagramUsername ? user.instagramUsername = $event.target.value : ''" 
+              type="text" [clearInput]="isEditing" [(ngModel)]="user.instagramUsername" [value]="user?.instagramUsername"  
               id="instagramUsername" name="instagramUsername" #instagramUsername="ngModel">
             </ion-input>
           </ion-item>
@@ -73,7 +73,7 @@
           <ion-item>
             <ion-icon slot='start' name="logo-twitter"></ion-icon>
             <ion-input 
-              type="text" [clearInput]="isEditing" [ngModel]="user?.twitterUsername" (ionChange)="user?.twitterUsername ? user.twitterUsername = $event.target.value : ''" 
+              type="text" [clearInput]="isEditing" [(ngModel)]="user.twitterUsername" [value]="user?.twitterUsername" 
               id="twitterUsername" name="twitterUsername" #twitterUsername="ngModel">
             </ion-input>
           </ion-item>
@@ -89,17 +89,7 @@
       
       </ion-col>
       <ion-col *ngIf="!isEditing" size='12'>
-        <ion-row>
-          <ion-col class="ion-text-center">
-            <ion-icon name="logo-facebook" size="large"></ion-icon>
-          </ion-col>
-          <ion-col class="ion-text-center">
-            <ion-icon name="logo-instagram" size="large"></ion-icon>
-          </ion-col>
-          <ion-col class="ion-text-center">
-            <ion-icon name="logo-twitter" size="large"></ion-icon>
-          </ion-col>
-        </ion-row>
+        <app-social-media-app [user]="user"></app-social-media-app>
       </ion-col>
       <ion-col class="action-button__container">
         <ion-row>
@@ -108,7 +98,7 @@
               Edit
               <ion-icon slot="end" name="pencil"></ion-icon>
             </ion-button>
-            <ion-button *ngIf="isEditing" color="success" type="submit" [disabled]="!accountPageForm.dirty || !accountPageForm.valid">
+            <ion-button *ngIf="isEditing" color="success" type="submit" [disabled]="!accountPageForm.dirty">
               <span *ngIf="!isSubmitting">
                 Save
                 <ion-icon slot="end" name="save"></ion-icon>
