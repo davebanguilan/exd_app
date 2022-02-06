@@ -3,14 +3,17 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
+  AddUserComponent,
   InlineValidationMessageComponent,
+  SocialMediaAppComponent,
 } from './components';
 import { ButtonSpinnerDirective, ConfirmPasswordValidatorDirective, DigitsOnlyDirective, PasswordValidatorDirective } from './directives';
-import { SocialMediaAppComponent } from './components/social-media-app/social-media-app.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 export const components = [
   InlineValidationMessageComponent,
-  SocialMediaAppComponent
+  SocialMediaAppComponent,
+  AddUserComponent
 ];
 
 export const directives = [
@@ -24,6 +27,7 @@ export const importModules = [
   CommonModule,
   FormsModule,
   IonicModule,
+  NgxQRCodeModule
 ];
 
 export const exportModules = [

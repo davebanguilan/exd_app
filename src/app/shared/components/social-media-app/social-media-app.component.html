@@ -1,11 +1,11 @@
 <ion-row>
-  <ion-col class="ion-text-center facebook">
-    <ion-icon name="logo-facebook" size="large" (click)="redirectToFacebook()"></ion-icon>
+  <ion-col [class]="!!user.fbUsername ? 'ion-text-center facebook': 'ion-text-center no-details'">
+    <ion-icon name="logo-facebook" size="large" (click)="redirectToFacebook()" ></ion-icon>
   </ion-col>
-  <ion-col class="ion-text-center instagram">
+  <ion-col [class]="!!user.instagramUsername ? 'ion-text-center instagram': 'ion-text-center no-details'">
     <ion-icon name="logo-instagram" size="large" (click)="redirectToInstagram()"></ion-icon>
   </ion-col>
-  <ion-col class="ion-text-center twitter">
+  <ion-col [class]="!!user.twitterUsername ? 'ion-text-center twitter': 'ion-text-center no-details'">
     <ion-icon name="logo-twitter" size="large" (click)="redirectToTwitter()"></ion-icon>
   </ion-col>
 </ion-row>

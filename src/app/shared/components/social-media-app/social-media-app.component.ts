@@ -24,15 +24,21 @@ export class SocialMediaAppComponent {
 
 
   redirectToFacebook(): void {
-    this.socialMedia(APP_TYPE.facebook, this.user.fbUsername);
+    if (this.user.fbUsername) {
+      this.socialMedia(APP_TYPE.facebook, this.user.fbUsername);
+    }
   }
 
   redirectToInstagram(): void {
-    this.socialMedia(APP_TYPE.instagram, this.user.instagramUsername);
+    if (this.user.instagramUsername) {
+      this.socialMedia(APP_TYPE.instagram, this.user.instagramUsername);
+    }
   }
 
   redirectToTwitter(): void {
-    this.socialMedia(APP_TYPE.twitter, this.user.twitterUsername);
+    if (this.user.twitterUsername) {
+      this.socialMedia(APP_TYPE.twitter, this.user.twitterUsername);
+    }
   }
 
   private socialMedia(type: string, username: string) {
