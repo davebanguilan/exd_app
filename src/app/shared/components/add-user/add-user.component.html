@@ -1,0 +1,68 @@
+<ion-row class="add-user__container">
+  <ion-col class="box__spacer--2" size='12'>
+    
+  </ion-col>
+  <ion-col class="ion-text-center" size='12'>
+    <ngx-qrcode 
+      [elementType]="text" 
+      [value]="user?.id"
+      errorCorrectionLevel="L"
+      [width]="250">
+    </ngx-qrcode>
+  </ion-col>
+  <div class="details__container">
+    <ion-col size='12'>
+      <ion-row >
+        <ion-col class="ion-no-padding" size='12'>
+          <ion-item lines="none">
+            <ion-icon slot='start' name="person-outline"></ion-icon>
+            <ion-input [value]="user?.name" readonly></ion-input>
+          </ion-item>
+        </ion-col>
+  
+        <ion-col class="ion-no-padding" size='12'>
+          <ion-item lines="none">
+            <ion-icon slot='start' name="mail-outline"></ion-icon>
+            <ion-input [value]="user?.email" readonly></ion-input>
+          </ion-item>
+        </ion-col>
+  
+        <ion-col class="ion-no-padding" size='12'>
+          <ion-item lines="none">
+            <ion-icon slot='start' name="call-outline"></ion-icon>
+            <ion-input [value]="user?.phoneNumber" readonly></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col class="box__spacer--4" size='12'>
+      
+    </ion-col>
+    <ion-row>
+      <ion-col class="box__spacer--4" size='12'>
+      
+      </ion-col>
+      <ion-col size='12'>
+        <app-social-media-app [user]="user"></app-social-media-app>
+      </ion-col>
+      <ion-col class="action-button__container">
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-button color="danger" shape="round" (click)="cancel()">
+              Cancel
+              <ion-icon slot="end" name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+
+          <ion-col class="ion-text-center">
+            <ion-button shape="round">
+              Connect
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    
+  </div>
+</ion-row>
