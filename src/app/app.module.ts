@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+import { SharedModule } from './shared';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    SharedModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     NgxQRCodeModule

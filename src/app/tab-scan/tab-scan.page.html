@@ -2,4 +2,4 @@
   <ion-spinner name="crescent" color="primary"></ion-spinner>
 </div>
 
-<app-add-user *ngIf="showAddUserPage" [user]="user" (isCancelled)="addUserCancelled()"></app-add-user>
+<app-add-user *ngIf="showAddUserPage" [user]="user" (isCancelled)="addUserCancelled()" [isUserAlreadyConnected]="isUserAlreadyConnected"></app-add-user>

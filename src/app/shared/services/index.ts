@@ -5,3 +5,4 @@ export * from './alert-modal.service';
 export * from './qr-code.service';
 export * from './toast.service';
 export * from './navigation.service';
+export * from './user-connection.service';

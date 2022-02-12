@@ -8,7 +8,7 @@ export const PATHURL = {
   // TABS
   tabs: 'tabs',
   account: 'account',
-  friends: 'friends',
+  connections: 'connections',
   scan: 'scan'
 };
 
@@ -17,6 +17,6 @@ export const ROUTEURL = {
   login: `/${PATHURL.login}`,
   tabs: `${PATHURL.tabs}`,
   account: `/${PATHURL.tabs}/${PATHURL.account}`,
-  friends: `/${PATHURL.tabs}/${PATHURL.friends}`,
+  connections: `/${PATHURL.tabs}/${PATHURL.connections}`,
   scan: `/${PATHURL.tabs}/${PATHURL.scan}`,
 };

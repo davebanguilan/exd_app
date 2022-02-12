@@ -55,9 +55,10 @@
           </ion-col>
 
           <ion-col class="ion-text-center">
-            <ion-button shape="round">
-              Connect
-              <ion-icon name="add-outline"></ion-icon>
+            <ion-button shape="round" (click)="addUser()" [appButtonSpinner]="isSubmitting" [disabled]="isUserAlreadyConnected">
+              {{isUserAlreadyConnected ? 'Connected' : 'Connect'}}
+              <ion-icon *ngIf="isUserAlreadyConnected" name="checkmark-outline"></ion-icon>
+              <ion-icon *ngIf="!isUserAlreadyConnected" name="add-outline"></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>
