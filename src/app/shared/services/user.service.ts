@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { COLLECTION } from '../constants';
-import { User } from '../models';
+import { SignInRequest, User } from '../models';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
+  QuerySnapshot,
 } from '@angular/fire/firestore';
-import { AuthService } from '.';
+import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -35,6 +37,7 @@ export class UserService {
         .then((response) => {
           user.id = response.user.uid;
           delete user.password;
+          delete user.confirmPassword;
           this.createUser(user)
             .then(() => {
               this.authService.setUser(user);
@@ -42,10 +45,56 @@ export class UserService {
             })
             .catch(() => reject(this.users));
         })
-        .catch(() => {
-          reject(this.users);
+        .catch((error) => {
+          reject(error);
         });
     });
+  }
+
+  async emailLogin(signInRequest: SignInRequest): Promise<User> {
+
+    return new Promise((resolve, reject) => {
+      this.authService.loginByEmail(signInRequest).then(
+        () => {
+          let user: User;
+          this.getUserByEmail(signInRequest.email)
+            .subscribe(
+              (userResponse) => {
+                if (userResponse.size > 0) {
+                  user = userResponse.docs[0].data();
+                  user.id = userResponse.docs[0].id;
+                  this.authService.setUser(user);
+                  resolve(user);
+                }
+              },
+              (error) => {
+                reject(error);
+              }
+            );
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async updateUser(user: User): Promise<void> {
+    await this.firestore
+          .collection<User>(COLLECTION.user)
+          .doc(user.id)
+          .update(user);
+
+    this.authService.updateUser(user);
+  }
+
+  getUserByEmail(email: string): Observable<QuerySnapshot<User>> {
+    const user = this.firestore
+      .collection<User>(COLLECTION.user, (ref) =>
+        ref.where('email', '==', email)
+      )
+      .get();
+    return user;
   }
 
   private createUser(user: User) {

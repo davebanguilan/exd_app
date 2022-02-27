@@ -5,6 +5,7 @@ export interface User {
   email?: string;
   phoneNumber?: string;
   password?: string;
+  confirmPassword?: string;
   photoUrl?: string;
   fbUsername?: string;
   instagramUsername?: string;
@@ -12,10 +13,6 @@ export interface User {
   snapchatUsername?: string;
   createdAt?: Date;
   updatedAt?: Date;
-}
-
-export interface SignUpRequest extends User {
-  confirmPassword?: string;
 }
 
 export interface SignInRequest {

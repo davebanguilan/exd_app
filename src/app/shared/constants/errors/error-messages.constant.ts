@@ -1,37 +1,42 @@
 export const ERRORS = {
   internal: 'internal',
+  login: 'login',
+  signUp: 'sign-up',
+  //Sign Up
+  emailAlreadyExist: 'auth/email-already-in-use',
+  invalidEmail: 'auth/invalid-email',
+  operationNotAllowed: 'auth/operation-not-allowed',
+  weakPassword: 'auth/weak-password',
+
+  //Sign In
+  userDisabled: 'auth/user-disabled',
   userNotFound: 'auth/user-not-found',
   wrongPassword: 'auth/wrong-password',
-  tooManyRequests: 'auth/too-many-requests',
-  emailNotVerified: 'auth/email-not-verified',
-  emailDoesNotExist: 'auth/email-does-not-exist',
-  passwordsMismatch: 'auth/password-mismatch',
-  invalidActionCode: 'auth/invalid-action-code',
-  expiredActionCode: 'auth/expired-action-code',
-  userStatusActive: 'user-status/active',
-  emailVerification: 'verify-email/failed'
+  tooManyRequest: 'auth/too-many-requests',
 };
 
 export const ERROR_MESSAGES_MAIN: Record<string, string> = {
-  [ERRORS.userNotFound]: 'Incorrect email address or password. Please check your credentials and try again.',
-  [ERRORS.wrongPassword]: 'Incorrect email address or password. Please check your credentials and try again.',
-  [ERRORS.tooManyRequests]: `Access to this account has been temporarily disabled due to many failed login attempts.
-    You can immediately restore it by resetting your password or you can try again later.`,
-  [ERRORS.emailNotVerified]: 'Email not verified. Please check your email and verify your account.',
-  [ERRORS.emailDoesNotExist]: 'Email does not exist',
-  [ERRORS.passwordsMismatch]: 'Password and Confirm Password do not match',
-  [ERRORS.invalidActionCode]: 'Your link is either invalid or has expired.',
-  [ERRORS.expiredActionCode]: 'Your link is either invalid or has expired.',
-  [ERRORS.userStatusActive]: 'User Status',
-  [ERRORS.emailVerification]: 'There was an error during the mail verification process. Please try again.'
+  [ERRORS.internal]: 'Error Encountered',
+  [ERRORS.login]: 'Login Error',
+  [ERRORS.signUp]: 'Sign Up Error',
+  [ERRORS.emailAlreadyExist]: 'Invalid Email Address',
+  [ERRORS.invalidEmail]: 'Invalid Email Address',
+  [ERRORS.operationNotAllowed]: 'Account Disabled',
+  [ERRORS.weakPassword]: 'Weak Password',
+  [ERRORS.userDisabled]: 'Account Disabled',
+  [ERRORS.userNotFound]: 'Account Not Found',
+  [ERRORS.wrongPassword]: 'Invalid Credentials',
+  [ERRORS.tooManyRequest]: 'Too Many Request',
 };
 
 export const ERROR_MESSAGES_SUB: Record<string, string> = {
-  [ERRORS.emailDoesNotExist]: 'Please check that you have typed your email or username correctly.',
   [ERRORS.internal]: 'We encountered a technical issue while trying to resolve your request. Please try again.',
-  [ERRORS.invalidActionCode]: 'Either the token has expired or the link has already been used. Please try again.',
-  [ERRORS.expiredActionCode]: 'Either the token has expired or the link has already been used. Please try again.',
-  [ERRORS.userStatusActive]: 'User is already registered. Please sign in instead',
-  [ERRORS.userNotFound]: 'Invalid Credentials',
-  [ERRORS.wrongPassword]: 'Invalid Credentials'
+  [ERRORS.emailAlreadyExist]: 'Email is already registered. Please user other email or login using that email.',
+  [ERRORS.invalidEmail]: 'Please check that you have typed your email correctly.',
+  [ERRORS.operationNotAllowed]: 'Your account is currently disabled. Please contact the admin to enable it again.',
+  [ERRORS.weakPassword]: 'The password entered is weak. Please follow the format.',
+  [ERRORS.userDisabled]: 'Your account is currently disabled. Please contact the admin to enable it again.',
+  [ERRORS.userNotFound]: 'The credentials you entered is not registered. Please sign up.',
+  [ERRORS.wrongPassword]: 'The email or password that you entered is invalid.',
+  [ERRORS.tooManyRequest]: 'We temporarily disabled your account due to numerous request. Please wait to login again.',
 };

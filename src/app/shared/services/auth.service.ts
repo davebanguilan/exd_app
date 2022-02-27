@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { LOCALSTORAGE } from '../constants';
-// import { RouteUrl } from '../const/navigation.const';
-import { User } from '../models/user.model';
+import { ROUTEURL } from '../constants';
+import { SignInRequest, User } from '../models';
 import { LocalStorageService } from './local-storage.service';
-import firebase from 'firebase';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -13,7 +11,8 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   getUser(): User {
@@ -29,6 +28,11 @@ export class AuthService {
     this.user = user;
   }
 
+  updateUser(user: User): void {
+    this.localStorageService.setCurrentUser(user);
+    this.user = user;
+  }
+
   async createUserByEmail(user: User): Promise<any> {
     const result = await this.afAuth.createUserWithEmailAndPassword(
       user.email,
@@ -38,10 +42,17 @@ export class AuthService {
     return result;
   }
 
-  async loginByEmail(email: string, password: string): Promise<any> {
+  async logout(): Promise<void> {
+    await this.afAuth.signOut();
+    this.user = undefined;
+    this.localStorageService.removeCurrentUser();
+    setTimeout(() => this.router.navigateByUrl(ROUTEURL.login), 100);
+  }
+
+  async loginByEmail(signInRequest: SignInRequest): Promise<any> {
     const result = await this.afAuth.signInWithEmailAndPassword(
-      email,
-      password
+      signInRequest.email,
+      signInRequest.password
     );
 
     return result;

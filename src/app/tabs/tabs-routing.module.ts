@@ -5,7 +5,7 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: ROUTEURL.tabs,
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -17,8 +17,8 @@ const routes: Routes = [
         loadChildren: () => import('../tab-scan/tab-scan.module').then(m => m.TabScanPageModule)
       },
       {
-        path: 'friends',
-        loadChildren: () => import('../tab-friends/tab-friends.module').then(m => m.TabFriendsPageModule)
+        path: 'connections',
+        loadChildren: () => import('../tab-connections/tab-connections.module').then(m => m.TabConnectionsPageModule)
       },
       {
         path: '',
