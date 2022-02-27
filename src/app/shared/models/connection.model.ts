@@ -1,6 +1,7 @@
 export interface Connection {
   id?: string;
-  dateAdded?: Date;
+  name?: string;
+  dateAdded?: any;
 };
 
 export interface ConnectionCollection {

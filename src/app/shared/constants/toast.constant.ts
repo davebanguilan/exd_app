@@ -10,7 +10,10 @@ export const TOAST_MESSAGE = {
 
   //ADD-USER
   addConnectionSuccess: 'User added successfully.',
-  addConnectionFailed: 'Adding user was unsuccesful. Please try again later.'
+  addConnectionFailed: 'Adding user was unsuccesful. Please try again later.',
+
+  //Default
+  default: 'Something went wrong. Please try again later.'
 };
 
 export const TOAST_POSITION = {

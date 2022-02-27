@@ -14,9 +14,6 @@ export const APP_URL = {
 export const APP_URL_SCHEME = {
   facebookIoS: 'fb://',
   facebookAndroid: 'com.facebook.katana',
-  // facebookWebModal: 'facebook://profile?username=',
-  // facebookWebModal: 'fb://profile/',
-  // facebookWebModal: 'fb://facebook.com/',
   facebookWebModal: 'fb://faceweb/f?href=',
   instagramIos: 'instagram://',
   instagramAndroid: 'com.instagram.android',

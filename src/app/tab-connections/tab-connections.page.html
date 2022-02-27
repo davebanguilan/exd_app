@@ -1,15 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" *ngIf="showConnectionPage">
+  <ion-segment [(ngModel)]="type" value="recentlyAdded">
+    <ion-segment-button value="recentlyAdded" layout="icon-start">
+      <ion-icon name="time-outline"></ion-icon>
+      <ion-label>Recently Added</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="allConnections" layout="icon-start">
+      <ion-icon name="people-circle-outline"></ion-icon>
+      <ion-label>All Connections</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ng-container [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'recentlyAdded'">
+      <ion-item *ngFor="let con of recentlyAddedConnections; let i = index" [lines]="showLines(i, recentlyAddedConnections) ? 'none' : 'full'">
+        <ion-label>{{con.connection.name | titlecase}}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="showEmptyRecentConnection()" [lines]="none" class="ion-text-center">
+        <ion-label>No recent connections.</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'allConnections'">
+      <ion-item *ngFor="let con of connections; let i = index" [lines]="showLines(i, connections) ? 'none' : 'full'">
+        <ion-label>{{con.connection.name | titlecase}}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="showEmptyAllConnection()" [lines]="none" class="ion-text-center">
+        <ion-label>No connections.</ion-label>
+      </ion-item>
+    </ion-list> 
+  </ng-container>
+  
 </ion-content>
+
+<div class="spin" *ngIf="!showConnectionPage">
+  <ion-spinner name="crescent" color="primary"></ion-spinner>
+</div>
+
