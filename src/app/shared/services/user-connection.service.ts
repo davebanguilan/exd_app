@@ -18,6 +18,7 @@ export class UserConnectionService {
 
   async addConnection(addUser: User): Promise<void> {
     await this.addConnectionCollectionRef.add(this.transformUserToConnection(addUser));
+    await this.addConnectionCounterpart(addUser);
   }
 
   async checkIfConnectionAlreadyExists(addUser: User): Promise<boolean> {
@@ -29,7 +30,7 @@ export class UserConnectionService {
     return collections.empty;
   }
 
-  async getConnections(): Promise<Connection[]> {
+  async getConnections(): Promise<ConnectionCollection[]> {
     let result: ConnectionCollection[] = [];
     const collectionsCol: QuerySnapshot<Connection> = await this.addConnectionCollectionRef.ref.get();
 
@@ -50,9 +51,24 @@ export class UserConnectionService {
       this.firestore.collection<Connection>(`${COLLECTION.userData}/${this.userService.user.id}/${COLLECTION.connection}`);
   }
 
+  private async addConnectionCounterpart(addUser: User): Promise<void> {
+    const connectionCP =
+      this.firestore.collection<Connection>(`${COLLECTION.userData}/${addUser.id}/${COLLECTION.connection}`);
+    await connectionCP.add(this.transfromOwnerToConnection());
+  }
+
   private transformUserToConnection(user: User): Connection {
     return {
       id: user.id,
+      name: user.name,
+      dateAdded: new Date(),
+    };
+  }
+
+  private transfromOwnerToConnection(): Connection {
+    return {
+      id: this.userService.user.id,
+      name: this.userService.user.name,
       dateAdded: new Date(),
     };
   }
